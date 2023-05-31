@@ -15,12 +15,28 @@ We're using a github action to automatically run Terraform Docs each time a pull
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.37.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [azurerm_container_app.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/container_app) | resource |
+| [azurerm_container_app_environment.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/container_app_environment) | resource |
+| [azurerm_container_registry.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/container_registry) | resource |
+| [azurerm_key_vault.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/key_vault) | resource |
+| [azurerm_key_vault_secret.aca-pass](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/key_vault_secret) | resource |
+| [azurerm_key_vault_secret.aca-url](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/key_vault_secret) | resource |
+| [azurerm_key_vault_secret.aca-user](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/key_vault_secret) | resource |
+| [azurerm_key_vault_secret.psql-pass](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/key_vault_secret) | resource |
+| [azurerm_key_vault_secret.psql-user](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/key_vault_secret) | resource |
+| [azurerm_log_analytics_workspace.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/log_analytics_workspace) | resource |
+| [azurerm_postgresql_flexible_server.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/postgresql_flexible_server) | resource |
+| [azurerm_postgresql_flexible_server_database.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/postgresql_flexible_server_database) | resource |
 | [azurerm_resource_group.baseRG](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/resources/resource_group) | resource |
+| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [random_uuid.acadapr](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/uuid) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.37.0/docs/data-sources/client_config) | data source |
 
 ## Inputs
 
