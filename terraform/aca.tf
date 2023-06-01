@@ -26,7 +26,7 @@ resource "random_uuid" "acadapr" {
 }
 
 resource "azurerm_container_app" "acadapr" {
-  name                         = "acadapr-aca"
+  name                         = "${var.projectName}-aca"
   container_app_environment_id = azurerm_container_app_environment.acadapr.id
   resource_group_name          = azurerm_resource_group.baseRG.name
   revision_mode                = "Single"
@@ -45,7 +45,7 @@ resource "azurerm_container_app" "acadapr" {
 
   template {
     container {
-      name   = "acadapr-aca"
+      name   = "${var.projectName}-aca"
       image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
       cpu    = 0.25
       memory = "0.5Gi"

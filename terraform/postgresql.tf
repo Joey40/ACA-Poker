@@ -5,7 +5,7 @@ resource "random_password" "password" {
 
 resource "azurerm_key_vault_secret" "psql-user" {
   name         = "psql-user"
-  value        = "dapr_user"
+  value        = "psql_user"
   key_vault_id = azurerm_key_vault.acadapr.id
 }
 
