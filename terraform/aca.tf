@@ -31,6 +31,10 @@ resource "azurerm_container_app" "acadapr" {
   resource_group_name          = azurerm_resource_group.baseRG.name
   revision_mode                = "Single"
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   dapr {
     app_id = random_uuid.acadapr.result
   }
@@ -47,7 +51,7 @@ resource "azurerm_container_app" "acadapr" {
   template {
     container {
       name   = "${var.projectName}-container"
-      image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
+      image  = "mcr.microsoft.com/k8se/quickstart:latest"
       cpu    = 0.25
       memory = "0.5Gi"
     }
