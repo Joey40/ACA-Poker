@@ -40,7 +40,7 @@ resource "azurerm_container_app" "acadapr" {
   }
 
   ingress {
-    external_enabled = false
+    external_enabled = true
     target_port      = 8000
     allow_insecure_connections = true
     traffic_weight {
