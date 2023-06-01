@@ -1,7 +1,7 @@
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_key_vault" "acadapr" {
-  name                       = "${var.projectName}-KV"
+  name                       = "${var.projectName}-kv"
   location                   = azurerm_resource_group.baseRG.location
   resource_group_name        = azurerm_resource_group.baseRG.name
   tenant_id                  = data.azurerm_client_config.current.tenant_id
