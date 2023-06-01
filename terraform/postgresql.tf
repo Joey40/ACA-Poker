@@ -34,10 +34,10 @@ resource "azurerm_postgresql_flexible_server_database" "acadapr" {
   charset   = "utf8"
 }
 
-resource "azurerm_postgresql_flexible_server_firewall_rule" "acadapr" {
-  for_each         = azurerm_container_app.acadapr.outbound_ip_addresses
-  name             = "acadapr-fw"
-  server_id        = azurerm_postgresql_flexible_server.acadapr.id
-  start_ip_address = each.key
-  end_ip_address   = each.key
-}
+# resource "azurerm_postgresql_flexible_server_firewall_rule" "acadapr" {
+#   for_each         = azurerm_container_app.acadapr.outbound_ip_addresses
+#   name             = "acadapr-fw"
+#   server_id        = azurerm_postgresql_flexible_server.acadapr.id
+#   start_ip_address = each.key
+#   end_ip_address   = each.key
+# }
