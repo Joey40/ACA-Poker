@@ -1,3 +1,7 @@
+---
+########################################
+## Terraform Plan/Apply GitHub Action ##
+########################################
 name: 'Terraform Plan/Apply'
 
 on:
