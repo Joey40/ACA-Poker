@@ -1,6 +1,6 @@
 resource "random_password" "password" {
-  length           = 30
-  special          = false
+  length  = 30
+  special = false
 }
 
 resource "azurerm_key_vault_secret" "psql-user" {
@@ -23,10 +23,8 @@ resource "azurerm_postgresql_flexible_server" "acadapr" {
   administrator_login    = azurerm_key_vault_secret.psql-user.value
   administrator_password = random_password.password.result
   zone                   = "2"
-
-  storage_mb = 32768
-
-  sku_name   = "B_Standard_B1ms"
+  storage_mb             = 32768
+  sku_name               = "B_Standard_B1ms"
 }
 
 resource "azurerm_postgresql_flexible_server_database" "acadapr" {
