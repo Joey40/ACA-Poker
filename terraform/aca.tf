@@ -60,16 +60,17 @@ resource "azurerm_container_app_environment_dapr_component" "acadapr" {
   version                      = "v1"
 
   secret {
-    name = "connstring"
-    value =  "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
+    name  = "connstring"
+    value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
   }
 
   metadata {
-    name = "connstring"
+    name        = "connstring"
     secret_name = "connstring"
   }
 
-  scopes     = [random_uuid.acadapr.result]
+  scopes = [random_uuid.acadapr.result]
+  
   depends_on = [
     azurerm_postgresql_flexible_server_firewall_rule.acadapr
   ]
