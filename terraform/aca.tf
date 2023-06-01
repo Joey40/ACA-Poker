@@ -38,6 +38,7 @@ resource "azurerm_container_app" "acadapr" {
   ingress {
     external_enabled = false
     target_port      = 80
+    allow_insecure_connections = true
     traffic_weight {
       percentage = 100
     }
