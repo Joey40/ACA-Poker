@@ -70,10 +70,10 @@ resource "azurerm_container_app_environment_dapr_component" "acadapr" {
   }
 
   scopes = [random_uuid.acadapr.result]
-  
-  depends_on = [
-    azurerm_postgresql_flexible_server_firewall_rule.acadapr
-  ]
+
+  # depends_on = [
+  #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
+  # ]
 }
 
 resource "azurerm_key_vault_secret" "aca-url" {
