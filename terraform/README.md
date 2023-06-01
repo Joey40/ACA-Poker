@@ -24,6 +24,7 @@ We're using a GitHub action to automatically run Terraform Docs each time a pull
 |------|------|
 | [azurerm_container_app.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_app) | resource |
 | [azurerm_container_app_environment.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_app_environment) | resource |
+| [azurerm_container_app_environment_dapr_component.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_app_environment_dapr_component) | resource |
 | [azurerm_container_registry.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_registry) | resource |
 | [azurerm_key_vault.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/key_vault) | resource |
 | [azurerm_key_vault_secret.aca-pass](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/key_vault_secret) | resource |
@@ -34,6 +35,7 @@ We're using a GitHub action to automatically run Terraform Docs each time a pull
 | [azurerm_log_analytics_workspace.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/log_analytics_workspace) | resource |
 | [azurerm_postgresql_flexible_server.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/postgresql_flexible_server) | resource |
 | [azurerm_postgresql_flexible_server_database.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/postgresql_flexible_server_database) | resource |
+| [azurerm_postgresql_flexible_server_firewall_rule.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/postgresql_flexible_server_firewall_rule) | resource |
 | [azurerm_resource_group.baseRG](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/resource_group) | resource |
 | [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
 | [random_uuid.acadapr](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/uuid) | resource |
