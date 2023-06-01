@@ -45,7 +45,7 @@ resource "azurerm_container_app" "acadapr" {
 
   template {
     container {
-      name   = "${var.projectName}-aca"
+      name   = "${var.projectName}-container"
       image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
       cpu    = 0.25
       memory = "0.5Gi"
