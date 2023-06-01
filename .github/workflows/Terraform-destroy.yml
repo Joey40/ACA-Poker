@@ -1,3 +1,7 @@
+---
+#####################################
+## Terraform Destroy GitHub Action ##
+#####################################
 name: 'Terraform Destroy'
 
 on:
@@ -24,8 +28,8 @@ jobs:
       #this is needed since we are running terraform with read-only permissions
       ARM_SKIP_PROVIDER_REGISTRATION: true
 
-    steps:
     # Checkout the repository to the GitHub Actions runner
+    steps:
     - name: Checkout
       uses: actions/checkout@v3
 
@@ -36,7 +40,8 @@ jobs:
         terraform_wrapper: true
         terraform_version: ${{env.tfVer}}
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    # Initialize a new or existing Terraform working directory by creating 
+    # initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       id: init
       run: terraform init
