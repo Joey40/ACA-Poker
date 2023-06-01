@@ -3,16 +3,16 @@ name: 'Terraform Plan/Apply'
 on:
   push:
     branches:
-    - main
+      - main
     paths:
-    - 'terraform/**'
-    - '.github/workflows/Terraform-plan-apply.yml'  
+      - 'terraform/**'
+      - '.github/workflows/Terraform-plan-apply.yml'  
   pull_request:
     branches:
-    - '*'
+      - '*'
     paths:
-    - 'terraform/**'
-    - '.github/workflows/Terraform-plan-apply.yml'  
+      - 'terraform/**'
+      - '.github/workflows/Terraform-plan-apply.yml'  
 
 #These environment variables are used by the terraform azure provider
 env:
@@ -80,7 +80,8 @@ jobs:
       continue-on-error: true
       working-directory: ${{env.workingDir}}
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    # Initialize a new or existing Terraform working directory by creating initial files, 
+    # loading any remote state, downloading modules, etc.
     - name: Terraform Init
       id: init
       run: terraform init
@@ -91,7 +92,8 @@ jobs:
       run: terraform validate -no-color
 
     # Generates an execution plan for Terraform
-    # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
+    # An exit code of 0 indicated no changes, 1 a 
+    # terraform failure, 2 there are pending changes.
     - name: Terraform Plan
       id: plan
       run: terraform plan -input=false -no-color -out=tfplan -detailed-exitcode
@@ -179,7 +181,7 @@ jobs:
 
   terraform-apply:
     name: 'Terraform Apply'
-    needs: [ terraform-plan, tflint ]
+    needs: [terraform-plan, tflint]
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' && needs.terraform-plan.outputs.tfplanExitCode == 2 }}
     steps:
