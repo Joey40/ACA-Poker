@@ -24,6 +24,7 @@ We're using a GitHub action to automatically run Terraform Docs each time a pull
 |------|------|
 | [azurerm_container_app.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_app) | resource |
 | [azurerm_container_app_environment.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_app_environment) | resource |
+| [azurerm_container_app_environment_dapr_component.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_app_environment_dapr_component) | resource |
 | [azurerm_container_registry.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/container_registry) | resource |
 | [azurerm_key_vault.acadapr](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/key_vault) | resource |
 | [azurerm_key_vault_secret.aca-pass](https://registry.terraform.io/providers/hashicorp/azurerm/3.58.0/docs/resources/key_vault_secret) | resource |
