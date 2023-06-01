@@ -43,9 +43,9 @@ resource "azurerm_container_app" "acadapr" {
     external_enabled = true
     target_port      = 8000
     allow_insecure_connections = true
-    traffic_weight {
-      percentage = 100
-    }
+    # traffic_weight {
+    #   percentage = 100
+    # }
   }
 
   template {
