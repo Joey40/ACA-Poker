@@ -56,6 +56,8 @@ resource "azurerm_container_app" "be_aca" {
       cpu    = 0.25
       memory = "0.5Gi"
     }
+    min_replicas = 1
+    max_replicas = 3
   }
 }
 
