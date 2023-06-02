@@ -53,3 +53,4 @@ jobs:
         acrName: ${{ env.ProjectName }}acr
         acrUsername: ${{ steps.acaKeyVault.outputs.aca-user }}
         acrPassword: ${{ steps.acaKeyVault.outputs.aca-pass }}
+        runtimeStack: 'python:3.11'
