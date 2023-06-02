@@ -83,7 +83,6 @@ resource "azurerm_container_app_environment_dapr_component" "postgresql" {
   component_type               = "state.postgresql"
   version                      = "v1"
 
-  This can be removed if Managed Identity works for this. 
   secret {
     name  = "connstring"
     value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
