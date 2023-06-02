@@ -46,11 +46,14 @@ jobs:
       with:
         appSourcePath: '${{ env.workingDir }}/backend'
         resourceGroup: ${{ env.ProjectName }}
+        location: 'eastus'
         containerAppEnvironment: ${{ env.ProjectName }}-ace
         containerAppName: ${{ env.ProjectName }}-be-aca
         targetPort: 8000
-        imageToBuild: ${{ steps.acaKeyVault.outputs.aca-url }}/${{ env.ProjectName }}-be-aca:${{ github.sha }}
+        ingress: 'external'
+        imageToBuild: ${{ steps.acaKeyVault.outputs.aca-url }}/${{ env.ProjectName }}be:${{ github.sha }}
         acrName: ${{ env.ProjectName }}acr
         acrUsername: ${{ steps.acaKeyVault.outputs.aca-user }}
         acrPassword: ${{ steps.acaKeyVault.outputs.aca-pass }}
         runtimeStack: 'python:3.11'
+        disableTelemetry: true
