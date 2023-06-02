@@ -11,7 +11,7 @@ workingDir: '${{ github.workspace }}/app'
 ProjectName: 'acapoker'
 
 jobs:
-build-and-deploy:
+  build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +19,7 @@ build-and-deploy:
     - uses: actions/checkout@v2
 
     - uses: Azure/login@v1
-    with:
+      with:
         creds: '{
                 "clientId":"${{ secrets.AZURE_CLIENT_ID }}",
                 "clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}",
@@ -28,14 +28,15 @@ build-and-deploy:
                 }'
 
     - uses: Azure/get-keyvault-secrets@v1
-    with:
+      id: acaKeyVault # ID for secrets that you will reference
+      with:
         keyvault: '${{ env.ProjectName }}-kv' # name of key vault in Azure portal
         secrets: 'aca-url, aca-user, aca-pass'  # comma separated list of secret keys to fetch from key vault 
-    id: acaKeyVault # ID for secrets that you will reference
+      
 
     - name: Build and deploy backend Container App
-    uses: azure/container-apps-deploy-action@v1
-    with:
+      uses: azure/container-apps-deploy-action@v1
+      with:
         appSourcePath: '${{ env.workingDir }}/backend'
         resourceGroup: ${{ env.ProjectName }}
         containerAppEnvironment: ${{ env.ProjectName }}-ace
