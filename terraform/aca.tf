@@ -44,7 +44,8 @@ resource "azurerm_container_app" "acadapr" {
     target_port      = 8000
     allow_insecure_connections = true
     traffic_weight {
-      percentage = 100
+      percentage      = 100
+      latest_revision = true
     }
   }
 
