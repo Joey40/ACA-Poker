@@ -22,11 +22,11 @@ resource "azurerm_container_app_environment" "acadapr" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.acadapr.id
 }
 
-resource "random_uuid" "acadapr" {
+resource "random_uuid" "be_app_id" {
 }
 
-resource "azurerm_container_app" "acadapr" {
-  name                         = "${var.projectName}-aca"
+resource "azurerm_container_app" "be_aca" {
+  name                         = "${var.projectName}-be-aca"
   container_app_environment_id = azurerm_container_app_environment.acadapr.id
   resource_group_name          = azurerm_resource_group.baseRG.name
   revision_mode                = "Single"
@@ -36,13 +36,13 @@ resource "azurerm_container_app" "acadapr" {
   }
 
   dapr {
-    app_id = random_uuid.acadapr.result
+    app_id = random_uuid.be_app_id.result
   }
 
   ingress {
     external_enabled = true
     target_port      = 8000
-    allow_insecure_connections = true
+    allow_insecure_connections = false
     traffic_weight {
       percentage      = 100
       latest_revision = true
@@ -59,23 +59,42 @@ resource "azurerm_container_app" "acadapr" {
   }
 }
 
-resource "azurerm_container_app_environment_dapr_component" "acadapr" {
+resource "azurerm_container_app_environment_dapr_component" "keyvault" {
+  name                         = "${var.projectName}-secrets"
+  container_app_environment_id = azurerm_container_app_environment.acadapr.id
+  component_type               = "secretstores.azure.keyvault"
+  version                      = "v1"
+
+  metadata {
+    name  = "vaultName"
+    value = azurerm_key_vault.acadapr.name
+  }
+
+  scopes = [random_uuid.be_app_id.result]
+
+  # depends_on = [
+  #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
+  # ]
+}
+
+resource "azurerm_container_app_environment_dapr_component" "postgresql" {
   name                         = "${var.projectName}-state"
   container_app_environment_id = azurerm_container_app_environment.acadapr.id
   component_type               = "state.postgresql"
   version                      = "v1"
 
-  secret {
-    name  = "connstring"
-    value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
-  }
+  # This can be removed if Managed Identity works for this. 
+  # secret {
+  #   name  = "connstring"
+  #   value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
+  # }
 
-  metadata {
-    name        = "connstring"
-    secret_name = "connstring"
-  }
+  # metadata {
+  #   name        = "connstring"
+  #   secret_name = "connstring"
+  # }
 
-  scopes = [random_uuid.acadapr.result]
+  scopes = [random_uuid.be_app_id.result]
 
   # depends_on = [
   #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
