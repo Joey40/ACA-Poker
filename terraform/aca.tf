@@ -36,7 +36,9 @@ resource "azurerm_container_app" "be_aca" {
   }
 
   dapr {
-    app_id = random_uuid.be_app_id.result
+    app_id       = random_uuid.be_app_id.result
+    app_port     = 8000
+    app_protocol = "http"
   }
 
   ingress {
