@@ -40,8 +40,8 @@ resource "azurerm_container_app" "be_aca" {
   }
 
   ingress {
-    external_enabled = true
-    target_port      = 8000
+    external_enabled           = true
+    target_port                = 8000
     allow_insecure_connections = false
     traffic_weight {
       percentage      = 100
@@ -83,16 +83,16 @@ resource "azurerm_container_app_environment_dapr_component" "postgresql" {
   component_type               = "state.postgresql"
   version                      = "v1"
 
-  # This can be removed if Managed Identity works for this. 
-  # secret {
-  #   name  = "connstring"
-  #   value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
-  # }
+  This can be removed if Managed Identity works for this. 
+  secret {
+    name  = "connstring"
+    value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
+  }
 
-  # metadata {
-  #   name        = "connstring"
-  #   secret_name = "connstring"
-  # }
+  metadata {
+    name        = "connstring"
+    secret_name = "connstring"
+  }
 
   scopes = [random_uuid.be_app_id.result]
 
