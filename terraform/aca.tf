@@ -81,12 +81,12 @@ resource "azurerm_container_app_environment_dapr_component" "keyvault" {
 
   metadata {
     name  = "azureTenantId"
-    value = azurerm_client_config.current.tenant_id
+    value = data.azurerm_client_config.current.tenant_id
   }
 
   metadata {
     name  = "azureClientId"
-    value = azurerm_client_config.current.client_id
+    value = data.azurerm_client_config.current.client_id
   }
 
   metadata {
