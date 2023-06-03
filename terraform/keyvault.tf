@@ -1,5 +1,3 @@
-data "azurerm_client_config" "current" {}
-
 resource "azurerm_key_vault" "acadapr" {
   name                       = "${var.projectName}-kv"
   location                   = azurerm_resource_group.baseRG.location
