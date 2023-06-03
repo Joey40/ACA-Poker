@@ -103,7 +103,7 @@ jobs:
       run: terraform plan -input=false -no-color -out=tfplan -detailed-exitcode
       working-directory: ${{env.workingDir}}
       env:
-        TF_VAR_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET }}"
+        TF_VAR_client_secret: "${{ secrets.AZURE_CLIENT_SECRET }}"
 
     - name: PR Comment
       id: comment
