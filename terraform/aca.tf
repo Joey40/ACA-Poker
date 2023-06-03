@@ -63,23 +63,43 @@ resource "azurerm_container_app" "be_aca" {
   }
 }
 
-# resource "azurerm_container_app_environment_dapr_component" "keyvault" {
-#   name                         = "${var.projectName}-secrets"
-#   container_app_environment_id = azurerm_container_app_environment.acadapr.id
-#   component_type               = "secretstores.azure.keyvault"
-#   version                      = "v1"
+resource "azurerm_container_app_environment_dapr_component" "keyvault" {
+  name                         = "${var.projectName}-secrets"
+  container_app_environment_id = azurerm_container_app_environment.acadapr.id
+  component_type               = "secretstores.azure.keyvault"
+  version                      = "v1"
 
-#   metadata {
-#     name  = "vaultName"
-#     value = azurerm_key_vault.acadapr.name
-#   }
+  secret {
+    name  = "azureClientSecret"
+    value = "${var.client_secret}"
+  }
 
-#   scopes = [random_uuid.be_app_id.result]
+  metadata {
+    name  = "vaultName"
+    value = azurerm_key_vault.acadapr.name
+  }
 
-#   # depends_on = [
-#   #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
-#   # ]
-# }
+  metadata {
+    name  = "azureTenantId"
+    value = azurerm_client_config.current.tenant_id
+  }
+
+  metadata {
+    name  = "azureClientId"
+    value = azurerm_client_config.current.client_id
+  }
+
+  metadata {
+    name        = "azureClientSecret"
+    secret_name = "azureClientSecret"
+  }
+
+  scopes = [random_uuid.be_app_id.result]
+
+  # depends_on = [
+  #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
+  # ]
+}
 
 # resource "azurerm_container_app_environment_dapr_component" "postgresql" {
 #   name                         = "${var.projectName}-state"
