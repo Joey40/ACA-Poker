@@ -70,7 +70,7 @@ resource "azurerm_container_app_environment_dapr_component" "keyvault" {
   version                      = "v1"
 
   secret {
-    name  = "azureClientSecret"
+    name  = "azureclientsecret"
     value = "${var.client_secret}"
   }
 
@@ -91,7 +91,7 @@ resource "azurerm_container_app_environment_dapr_component" "keyvault" {
 
   metadata {
     name        = "azureClientSecret"
-    secret_name = "azureClientSecret"
+    secret_name = "azureclientsecret"
   }
 
   scopes = [random_uuid.be_app_id.result]
