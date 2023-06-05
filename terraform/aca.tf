@@ -63,43 +63,43 @@ resource "azurerm_container_app" "be_aca" {
   }
 }
 
-resource "azurerm_container_app_environment_dapr_component" "keyvault" {
-  name                         = "${var.projectName}-secrets"
-  container_app_environment_id = azurerm_container_app_environment.acadapr.id
-  component_type               = "secretstores.azure.keyvault"
-  version                      = "v1"
+# resource "azurerm_container_app_environment_dapr_component" "keyvault" {
+#   name                         = "${var.projectName}-secrets"
+#   container_app_environment_id = azurerm_container_app_environment.acadapr.id
+#   component_type               = "secretstores.azure.keyvault"
+#   version                      = "v1"
 
-  secret {
-    name  = "azureclientsecret"
-    value = "${var.client_secret}"
-  }
+#   secret {
+#     name  = "azureclientsecret"
+#     value = "${var.client_secret}"
+#   }
 
-  metadata {
-    name  = "vaultName"
-    value = azurerm_key_vault.acadapr.name
-  }
+#   metadata {
+#     name  = "vaultName"
+#     value = azurerm_key_vault.acadapr.name
+#   }
 
-  metadata {
-    name  = "azureTenantId"
-    value = data.azurerm_client_config.current.tenant_id
-  }
+#   metadata {
+#     name  = "azureTenantId"
+#     value = data.azurerm_client_config.current.tenant_id
+#   }
 
-  metadata {
-    name  = "azureClientId"
-    value = data.azurerm_client_config.current.client_id
-  }
+#   metadata {
+#     name  = "azureClientId"
+#     value = data.azurerm_client_config.current.client_id
+#   }
 
-  metadata {
-    name        = "azureClientSecret"
-    secret_name = "azureclientsecret"
-  }
+#   metadata {
+#     name        = "azureClientSecret"
+#     secret_name = "azureclientsecret"
+#   }
 
-  scopes = [random_uuid.be_app_id.result]
+#   scopes = [random_uuid.be_app_id.result]
 
-  # depends_on = [
-  #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
-  # ]
-}
+#   # depends_on = [
+#   #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
+#   # ]
+# }
 
 # resource "azurerm_container_app_environment_dapr_component" "postgresql" {
 #   name                         = "${var.projectName}-state"
