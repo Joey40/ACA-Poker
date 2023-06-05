@@ -5,7 +5,9 @@ from pydantic import BaseModel
 app = FastAPI()
 
 class PokerGame(BaseModel):
-    id: uuid.UUID
+    # set a default value of none so that the API doesn't
+    # expect it when creating a new game
+    id: uuid.UUID = None
     name: str
     players: list
     status: str
