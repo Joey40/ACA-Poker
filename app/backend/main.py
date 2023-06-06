@@ -18,6 +18,6 @@ def read_root():
 
 @app.post("/game")
 async def create_game(game: PokerGame):
-    gameID = uuid.uuid4()
+    game_id = uuid.uuid4()
     game.id = game_id
     return {"game_id": str(game_id), "game": game}
