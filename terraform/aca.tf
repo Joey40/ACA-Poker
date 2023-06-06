@@ -101,28 +101,28 @@ resource "azurerm_container_app" "be_aca" {
 #   # ]
 # }
 
-# resource "azurerm_container_app_environment_dapr_component" "postgresql" {
-#   name                         = "${var.projectName}-state"
-#   container_app_environment_id = azurerm_container_app_environment.acadapr.id
-#   component_type               = "state.postgresql"
-#   version                      = "v1"
+resource "azurerm_container_app_environment_dapr_component" "postgresql" {
+  name                         = "${var.projectName}-state"
+  container_app_environment_id = azurerm_container_app_environment.acadapr.id
+  component_type               = "state.postgresql"
+  version                      = "v1"
 
-#   secret {
-#     name  = "connstring"
-#     value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
-#   }
+  secret {
+    name  = "connstring"
+    value = "host=${azurerm_postgresql_flexible_server.acadapr.fqdn} user=${azurerm_key_vault_secret.psql-user.value} password=${random_password.password.result} port=5432 connect_timeout=10 database=${azurerm_postgresql_flexible_server_database.acadapr.name}"
+  }
 
-#   metadata {
-#     name        = "connstring"
-#     secret_name = "connstring"
-#   }
+  metadata {
+    name        = "connstring"
+    secret_name = "connstring"
+  }
 
-#   scopes = [random_uuid.be_app_id.result]
+  scopes = [random_uuid.be_app_id.result]
 
-#   # depends_on = [
-#   #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
-#   # ]
-# }
+  # depends_on = [
+  #   azurerm_postgresql_flexible_server_firewall_rule.acadapr
+  # ]
+}
 
 resource "azurerm_key_vault_secret" "aca-url" {
   name         = "aca-url"
