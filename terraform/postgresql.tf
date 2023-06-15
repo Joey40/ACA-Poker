@@ -37,6 +37,6 @@ resource "azurerm_postgresql_flexible_server_database" "acadapr" {
 resource "azurerm_postgresql_flexible_server_firewall_rule" "acadapr" {
   name             = "acadapr-fw"
   server_id        = azurerm_postgresql_flexible_server.acadapr.id
-  start_ip_address = tolist(azurerm_container_app.acadapr.outbound_ip_addresses)[0]
-  end_ip_address   = tolist(azurerm_container_app.acadapr.outbound_ip_addresses)[0]
+  start_ip_address = tolist(azurerm_container_app.be_aca.outbound_ip_addresses)[0]
+  end_ip_address   = tolist(azurerm_container_app.be_aca.outbound_ip_addresses)[0]
 }
