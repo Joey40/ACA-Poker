@@ -1,4 +1,5 @@
 import uuid
+from dapr.clients import DaprClient
 from fastapi import FastAPI
 from pydantic import BaseModel
 
