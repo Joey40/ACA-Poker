@@ -113,7 +113,7 @@ resource "azurerm_container_app_environment_dapr_component" "postgresql" {
   }
 
   metadata {
-    name        = "connstring"
+    name        = "connectionString"
     secret_name = "connstring"
   }
 
