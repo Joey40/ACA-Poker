@@ -23,14 +23,14 @@ def read_root():
 async def create_game(game: PokerGame):
     game_id = uuid.uuid4()
     game.id = game_id
-    with DaprClient() as d:
-        d.save_state(DAPR_STORE_NAME, str(game_id), game.json())
+    with DaprClient() as dapr:
+        dapr.save_state(DAPR_STORE_NAME, str(game_id), game.json())
     return {"game_id": str(game_id), "game": game}
 
 @app.get("/game")
 async def get_game(game_id: uuid.UUID = Query(...)):
-    with DaprClient() as d:
-        game = d.get_state(DAPR_STORE_NAME, str(game_id))
+    with DaprClient() as dapr:
+        game = dapr.get_state(DAPR_STORE_NAME, str(game_id)).data
     if game is None:
         raise HTTPException(status_code=404, detail="Game not found")
     return game
