@@ -33,7 +33,7 @@ async def get_game(game_id: uuid.UUID = Query(...)):
     with DaprClient() as dapr:
         game = dapr.get_state(DAPR_STORE_NAME, str(game_id)).data
         print("Game: "+str(game))
-        if game is None:
+        if game == b'':
             raise HTTPException(status_code=404, detail="Game not found")
         else:
             game = json.loads(game)
@@ -44,7 +44,7 @@ async def get_game(game_id: uuid.UUID = Query(...)):
     with DaprClient() as dapr:
         game = dapr.get_state(DAPR_STORE_NAME, str(game_id)).data
         print("Game: "+str(game))
-        if game is None:
+        if game == b'':
             raise HTTPException(status_code=404, detail="Game not found")
         else:
             dapr.delete_state(DAPR_STORE_NAME, str(game_id))
