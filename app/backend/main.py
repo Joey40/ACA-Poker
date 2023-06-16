@@ -1,7 +1,7 @@
 import json
 import uuid
 from dapr.clients import DaprClient
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from pydantic import BaseModel
 
 DAPR_STORE_NAME="acapoker-state"
@@ -35,9 +35,8 @@ async def get_game(game_id: uuid.UUID = Query(...)):
         print("Game: "+str(game))
         if game == b'':
             raise HTTPException(status_code=404, detail="Game not found")
-        else:
-            game = json.loads(game)
-            return game
+        game = json.loads(game)
+        return game
 
 @app.delete("/game")
 async def get_game(game_id: uuid.UUID = Query(...)):
@@ -46,6 +45,5 @@ async def get_game(game_id: uuid.UUID = Query(...)):
         print("Game: "+str(game))
         if game == b'':
             raise HTTPException(status_code=404, detail="Game not found")
-        else:
-            dapr.delete_state(DAPR_STORE_NAME, str(game_id))
-            return "game_id: " + str(game_id) + " has been deleted."
+        dapr.delete_state(DAPR_STORE_NAME, str(game_id))
+        return "game_id: " + str(game_id) + " has been deleted."
