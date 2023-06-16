@@ -30,7 +30,7 @@ async def create_game(game: PokerGame):
 @app.get("/game")
 async def get_game(game_id: uuid.UUID = Query(...)):
     with DaprClient() as d:
-        game = d.save_state(DAPR_STORE_NAME, str(game_id))
+        game = d.get_state(DAPR_STORE_NAME, str(game_id))
     if game is None:
         raise HTTPException(status_code=404, detail="Game not found")
     return game
