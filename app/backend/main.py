@@ -1,6 +1,6 @@
 import uuid
 from dapr.clients import DaprClient
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from pydantic import BaseModel
 
 DAPR_STORE_NAME="acapoker-state"
@@ -26,3 +26,11 @@ async def create_game(game: PokerGame):
     with DaprClient() as d:
         d.save_state(DAPR_STORE_NAME, str(game_id), str(game.json()))
     return {"game_id": str(game_id), "game": game}
+
+@app.get("/game")
+async def get_game(game_id: uuid.UUID = Query(...)):
+    with DaprClient() as d:
+        game = d.save_state(DAPR_STORE_NAME, str(game_id))
+    if game is None:
+        raise HTTPException(status_code=404, detail="Game not found")
+    return game
