@@ -1,4 +1,5 @@
-fastapi==0.95.2
-uvicorn==0.22.0
 dapr==1.10.0
 dapr-ext-fastapi==1.10.0
+fastapi==0.95.2
+pokerlib==2.2.6
+uvicorn==0.22.0
