@@ -21,4 +21,6 @@ def read_root():
 async def create_game(game: PokerGame):
     game_id = uuid.uuid4()
     game.id = game_id
+    with DaprClient() as d:
+        d.save_state(store_name="acapoker-state", key=game_id, value=game)
     return {"game_id": str(game_id), "game": game}
