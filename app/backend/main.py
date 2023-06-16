@@ -35,3 +35,9 @@ async def get_game(game_id: uuid.UUID = Query(...)):
     if game is None:
         raise HTTPException(status_code=404, detail="Game not found")
     return game
+
+@app.delete("/game")
+async def get_game(game_id: uuid.UUID = Query(...)):
+    with DaprClient() as dapr:
+        dapr.delete_state(DAPR_STORE_NAME, str(game_id))
+    return "game_id: " + str(game_id) + " has been deleted."
