@@ -31,13 +31,19 @@ async def create_game(game: PokerGame):
 @app.get("/game")
 async def get_game(game_id: uuid.UUID = Query(...)):
     with DaprClient() as dapr:
-        game = json.loads(dapr.get_state(DAPR_STORE_NAME, str(game_id)).data)
+        game = dapr.get_state(DAPR_STORE_NAME, str(game_id)).data
     if game is None:
         raise HTTPException(status_code=404, detail="Game not found")
-    return game
+    else:
+        game = json.loads(game)
+        return game
 
 @app.delete("/game")
 async def get_game(game_id: uuid.UUID = Query(...)):
     with DaprClient() as dapr:
-        dapr.delete_state(DAPR_STORE_NAME, str(game_id))
-    return "game_id: " + str(game_id) + " has been deleted."
+        game = dapr.get_state(DAPR_STORE_NAME, str(game_id)).data
+        if game is None:
+            raise HTTPException(status_code=404, detail="Game not found")
+        else:
+            dapr.delete_state(DAPR_STORE_NAME, str(game_id))
+            return "game_id: " + str(game_id) + " has been deleted."
